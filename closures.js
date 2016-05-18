@@ -11,12 +11,12 @@ var outer = function(){
 // Above you're given a function that returns another function which has a closure over the name variable.
 // Invoke outer saving the return value into another variable called 'inner'.
 
-// Code Here
+var inner = outer();
 
 
 //Once you do that, invoke inner.
 
-  //Code Here
+  inner();
 
 
 
@@ -35,7 +35,9 @@ var callFriend = function(){
 // Above you're given a callFriend function that returns another function.
 // Create a makeCall function that when invoked logs  'Calling Jake at 435-215-9248' in your console.
 
-  //Code Here
+  var makeCall = callFriend();
+  console.log(makeCall("435-215-9248"));
+
 
 
 
@@ -51,14 +53,20 @@ var callFriend = function(){
   Write a function called makeCounter that makes the following code work properly.
 */
 
-//Code Here
+function makeCounter(){
+  var count = 0;
+  function counter(){
+    return count += 1;
+  }
+  return counter;
+}
 
-//Uncomment this once you make your function
-//   var count = makeCounter();
-//   count(); // 1
-//   count(); // 2
-//   count(); // 3
-//   count(); // 4
+
+  var count = makeCounter();
+  count(); // 1
+  count(); // 2
+  count(); // 3
+  count(); // 4
 
 
 
@@ -73,10 +81,13 @@ var callFriend = function(){
 
 function counterFactory(value) {
 
-  // Code here.
-
-
-  return {
+  return  {
+    inc: function(){
+      return value+= 1;
+    },
+    dec: function(){
+      return value-= 1;
+    }
   }
 }
 
@@ -95,7 +106,11 @@ counter = counterFactory(10);
 
     var welcomeText = 'You\'re doing awesome, keep it up ';
 
-    // code message function here.
+    function message(){
+      var newmsg = welcomeText + firstname + " " + lastname + ".";
+      return newmsg;
+    }
+    return message();
 
 
     //Uncommment this to return the value of your invoked message function
